@@ -6,8 +6,30 @@ using namespace std;
 
 bool isBalanced(string s)
 {
-	// replace the body of this function 
-	return true;
+	vector<char> parentheses;
+	bool isValid = true;
+
+	for (int i = 0; i < s.length() && isValid; i++)
+	{
+		if (s[i] == '(')
+		{
+			parentheses.push_back(s[i]);
+		}
+		else if (s[i] == ')' && !parentheses.empty())
+		{
+			if (!parentheses.empty())
+			{
+				parentheses.pop_back();
+			}
+			else
+				isValid = false;
+		}
+	}
+
+	if (!parentheses.empty())
+		isValid = false;
+
+	return isValid;
 }
 
 int main()
